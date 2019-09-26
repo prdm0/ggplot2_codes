@@ -1,4 +1,10 @@
 library(ggplot2)
+library(showtext)
+library(cowplot)
+
+
+showtext_auto()
+font_add_google("Gloria Hallelujah", "gloria")
 
 empirical <- function(x, ...){
   
@@ -36,13 +42,18 @@ p5 <- p4 + stat_function(args = list(shape = 2, scale = 1.5), fun = pweibull, lw
 p6 <- p5 + scale_colour_manual(breaks = c("Teórica", "Empírica"),
                                values = c("black", "blue"), name = "Curvas")
 
-theme_line <- theme(plot.title = element_text(face = "bold"),
-                     axis.title = element_text(face = "bold"),
-                     legend.title = element_text(face = "bold"),
-                     legend.spacing.y = unit(2, "mm"),
-                     legend.spacing.x = unit(5, "mm"),
-                     legend.margin = margin(r = 0.6, l = 0.2, b = 0.2, unit='cm'),
-                     legend.background = element_rect(fill = "gray95", color = "black"))
+theme_line <- theme(plot.title = element_text(face = "bold", family = "gloria"),
+                    plot.subtitle = element_text(family = "gloria"),
+                    axis.title = element_text(face = "bold", family = "gloria"),
+                    legend.title = element_text(face = "bold"),
+                    legend.spacing.y = unit(2, "mm"),
+                    legend.spacing.x = unit(5, "mm"),
+                    legend.margin = margin(r = 0.6, l = 0.2, b = 0.2, unit = 'cm'),
+                    legend.background = element_rect(fill = "gray95", color = "black"),
+                    legend.text = element_text(family = "gloria"))
 
 p7 <- p6 + theme_line
-      
+  
+plot_grid(p1, p5, p6, p7, labels = c("A", "B", "C", "D"))
+
+ggsave(filename = "empirical.pdf", width = 10, height = 10)
