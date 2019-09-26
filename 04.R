@@ -24,7 +24,7 @@ p1 <- ggplot(data = data.frame(x = x, y = y), aes(x = x, y = y))
   
 p2 <- p1  + ggtitle(label = "Função de Distribuição Empírica", subtitle = "Gráfico 04")
 
-p3 <- p2 + scale_x_continuous(breaks = seq(0, 4, by = 0.3)) + scale_y_continuous(breaks = seq(0, 1, by = 0.1))
+p3 <- p2 + scale_x_continuous(breaks = seq(0, 4, by = 0.3)) + scale_y_continuous(breaks = seq(0, 1, by = 0.05))
 
 p4 <- p3 + geom_hline(yintercept = 1, lty = 2, lwd = 1.1, color = "gray40", alpha = 0.6)
 
@@ -36,13 +36,13 @@ p5 <- p4 + stat_function(args = list(shape = 2, scale = 1.5), fun = pweibull, lw
 p6 <- p5 + scale_colour_manual(breaks = c("Teórica", "Empírica"),
                                values = c("black", "blue"), name = "Curvas")
 
-theme_pedro <- theme(plot.title = element_text(face = "bold"),
+theme_line <- theme(plot.title = element_text(face = "bold"),
                      axis.title = element_text(face = "bold"),
                      legend.title = element_text(face = "bold"),
                      legend.spacing.y = unit(2, "mm"),
                      legend.spacing.x = unit(5, "mm"),
-                     legend.margin = margin(r = 1, unit='cm'),
-                     legend.background = element_rect(fill = "gray95"))
+                     legend.margin = margin(r = 0.6, l = 0.2, b = 0.2, unit='cm'),
+                     legend.background = element_rect(fill = "gray95", color = "black"))
 
-p7 <- p6 + theme_pedro
+p7 <- p6 + theme_line
       
