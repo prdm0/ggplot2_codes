@@ -33,5 +33,6 @@ ggplot(mapping = aes(x = x, y = y)) + scale_x_continuous(name = "x", breaks = se
   theme(
     plot.title = element_text(face = "bold"),
     legend.title = element_text(face = "bold"),
-    axis.title = element_text(face = "bold")
+    axis.title = element_text(face = "bold"),
+    legend.background = element_rect(color = "black")
   )
